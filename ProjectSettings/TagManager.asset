@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Oxygen
   - OxygenText
+  - Loot
   layers:
   - Default
   - TransparentFX

@@ -23,7 +23,6 @@ public class OxygenCountTracker : MonoBehaviour {
 		oxygen = oxygen -1;
 		if(oxygen == 0){
 			FindObjectOfType<GameManager>().gameOver();
-			
 		} 
 		oxygenText.text= "OXYGEN:"+ oxygen.ToString() ;
 	}

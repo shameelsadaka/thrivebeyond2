@@ -16,11 +16,9 @@ public class FlipPlayer : MonoBehaviour {
 
 
 	void Update(){
-	  if(buttonPressed){   
-		 
-       Quaternion desiredRotation = Quaternion.Euler (0,0,rotationAngle);
-       transform.rotation = Quaternion.Lerp (transform.rotation, desiredRotation, smoothTime);
- 
+	  if(buttonPressed){
+		Quaternion desiredRotation = Quaternion.Euler (0,0,rotationAngle);
+		transform.rotation = Quaternion.Lerp (transform.rotation, desiredRotation, smoothTime);
 	  }
 
     }
