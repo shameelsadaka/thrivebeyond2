@@ -13,7 +13,6 @@ public class Movement : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		ScreenWidth = Screen.width;
-		
 	}
 	
 	// Update is called once per frame
@@ -23,11 +22,11 @@ public class Movement : MonoBehaviour {
 		while (i < Input.touchCount) {
 			if (Input.GetTouch (i).position.x > ScreenWidth / 2)  {
 				//move right
-				RunCharacter (1.0f);
+				RunCharacter (2.0f);
 			}
 			if (Input.GetTouch (i).position.x < ScreenWidth / 2) {
 				//move left
-				RunCharacter (-1.0f);
+				RunCharacter (-2.0f);
 			}
 			++i;
  		}

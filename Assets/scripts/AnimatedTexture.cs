@@ -13,22 +13,17 @@ public class AnimatedTexture : MonoBehaviour {
 	void Start () {
 		material =GetComponent<Renderer>().material;
 		offset=material.GetTextureOffset("_MainTex");
-     
-		
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		print(goingUp.ToString());
         if(goingUp){
 			offset-=speed*Time.deltaTime;
-             material.SetTextureOffset("_MainTex",offset);
-			
+             material.SetTextureOffset("_MainTex",offset);			
 		}
 		else{
            offset += speed*Time.deltaTime;
 		   material.SetTextureOffset("_MainTex",offset);
-		
 		}
 	}
     
@@ -37,7 +32,7 @@ public class AnimatedTexture : MonoBehaviour {
 	}
 	public void putGoingUpFalse(){
 		goingUp=false;
-			}
+	}
 
 	public bool getGoingUp(){
              return goingUp;
