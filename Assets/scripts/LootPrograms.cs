@@ -14,7 +14,7 @@ public class LootPrograms : MonoBehaviour {
 	//private Rigidbody2D diverBody2D;
 
 	void Start(){
-		InvokeRepeating("CreateLoot", 2.0f, 0.5f);
+		InvokeRepeating("CreateLoot", 0.0f, 0.5f);
 	}
 	//void Awake(){
 	//	diverBody2D = GetComponent<Rigidbody2D>();
@@ -24,7 +24,7 @@ public class LootPrograms : MonoBehaviour {
 		{
 			thisLoot = col.gameObject;
 			Destroy(thisLoot);
-			switch(col.gameObject.GetComponent<LootBehaviour>().lootType){
+			switch(thisLoot.GetComponent<LootBehaviour>().lootType){
 				case 0:
 					FindObjectOfType<GameManager>().gameOver();
 					break;
@@ -32,15 +32,23 @@ public class LootPrograms : MonoBehaviour {
 					var oxygen = FindObjectOfType<OxygenCountTracker>().oxygen+400; 
 					FindObjectOfType<OxygenCountTracker>().oxygen=oxygen>1000?1000:oxygen;
 					break;
+				case 2:
+					FindObjectOfType<GameManager>().addLootScore(thisLoot.GetComponent<LootBehaviour>().lootValue); 
+					break;
+				case 3:
+					FindObjectOfType<GameManager>().addLootScore(thisLoot.GetComponent<LootBehaviour>().lootValue); 
+					break;
 				default:
 					break;
 			}
 		}
 	}
 	void CreateLoot(){
+		if(FindObjectOfType<FlipPlayer>().goingUp) return;
 		if(Random.Range(0,5) !=  0) return;/* Changing problability */
 		
-		int newLootType = Random.Range(0,LootDemo.Length-1);
+		int newLootType = Random.Range(0,LootDemo.Length*2-1);
+		newLootType = newLootType/2;
 		newLoot = Instantiate(LootDemo[newLootType]);
 		LootBehaviour newBehaviour = newLoot.GetComponent<LootBehaviour>();
 		newBehaviour.velocity = new Vector2(0,300 + (100* Random.Range(0.0f,1.0f)));

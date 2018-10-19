@@ -18,8 +18,7 @@ public class OxygenCountTracker : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void FixedUpdate () {
-		
+	void FixedUpdate () {		
 		oxygen = oxygen -1;
 		if(oxygen == 0){
 			FindObjectOfType<GameManager>().gameOver();

@@ -28,13 +28,14 @@ public class GameManager : MonoBehaviour {
        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
        
        FindObjectOfType<AnimatedTexture>().putGoingUpFalse();
-             Time.timeScale=1;
+       Time.timeScale=1;
        gamehasEnded=false;
        gameIsWon=false;
        depth=0;
    }
 
    void Update(){
+       if(gamehasEnded) return;
        if(FindObjectOfType<AnimatedTexture>().getGoingUp()){
             button.SetActive(false);
             height--;
@@ -48,24 +49,23 @@ public class GameManager : MonoBehaviour {
        ScoreUpdate.text="SCORE: "+depth.ToString();
        velocity += 0.001f;
    }
+   public void addLootScore(float score){
+       depth += score;
+   }
     public void gameOver(){
-        if(!gamehasEnded){
-            gameOverMenu.SetActive(true);
-            Time.timeScale=0;
-            button.SetActive(false);
-        }
+        gamehasEnded = true;
+        gameOverMenu.SetActive(true);
+        Time.timeScale=0;
+        button.SetActive(false);
    } 
    
    void gameWon(){
+        gamehasEnded = true;
         if(gameIsWon){
-	     print("SCORE:"+depth);
-         ScoreFinal.text="SCORE:"+depth.ToString();
+	     ScoreFinal.text="SCORE:"+depth.ToString();
          gameWonMenu.SetActive(true);
-         print(Time.timeScale);
          Time.timeScale=0;
          button.SetActive(false);
-         
        }      
-
    }
 }

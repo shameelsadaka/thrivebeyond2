@@ -17,7 +17,7 @@ public class LootBehaviour : MonoBehaviour {
 	void FixedUpdate(){
 		body2D.velocity = velocity;
 	}
-	void reverse(){
+	public void reverse(){
 		velocity = velocity*-1;
 	}
 }
